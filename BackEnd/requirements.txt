@@ -9,6 +9,7 @@ PyJWT==2.10.1
 bcrypt==4.2.1
 python-dotenv==1.0.1
 email-validator==2.2.0
+gunicorn==23.0.0
 
 # --- prediction model (diet recommendation + metabolic model) ---
 # scikit-learn is pinned to match the version the .pkl files in
