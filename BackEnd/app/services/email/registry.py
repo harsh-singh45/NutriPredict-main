@@ -6,10 +6,12 @@ from app.services.email.console_sender import ConsoleEmailSender
 
 # Once SMTPEmailSender (or another real provider) is configured, uncomment:
 from app.services.email.smtp_sender import SMTPEmailSender
+from app.services.email.elastic_email_sender import ElasticEmailSender
 
 _REGISTRY: dict[str, type[BaseEmailSender]] = {
     # "console": ConsoleEmailSender,
-    "smtp": SMTPEmailSender,
+    # "smtp": SMTPEmailSender,
+    "elastic": ElasticEmailSender,
 }
 
 

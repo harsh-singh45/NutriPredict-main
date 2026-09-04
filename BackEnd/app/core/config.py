@@ -41,11 +41,15 @@ class Settings(BaseSettings):
     # --- Email ---
     # "console" (default — logs instead of sending, see services/email/)
     # "smtp" once services/email/smtp_sender.py is filled in and registered
-    SMTP_HOST: str = "smtp.gmail.com"
-    SMTP_PORT: int = 587
-    SMTP_USERNAME: str = ""
-    SMTP_PASSWORD: str = ""
-    EMAIL_BACKEND: str = "smtp"
+    # SMTP_HOST: str = "smtp.gmail.com"
+    # SMTP_PORT: int = 587
+    # SMTP_USERNAME: str = ""
+    # SMTP_PASSWORD: str = ""
+    # EMAIL_BACKEND: str = "smtp"
+    # EMAIL_FROM_ADDRESS: str = ""
+    # --- Email ---
+    EMAIL_BACKEND: str = "elastic"
+    ELASTIC_EMAIL_API_KEY: str = ""
     EMAIL_FROM_ADDRESS: str = ""
 
     # --- Password reset ---
