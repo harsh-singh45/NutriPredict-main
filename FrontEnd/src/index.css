@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   NutriPredict Design System
+   Premium health-tech / nutrition-intelligence visual language.
+   ========================================================================== */
+
+@theme {
+  /* Brand green */
+  --color-primary: #1F5A3F;
+  --color-primary-dark: #123D2A;
+  --color-primary-light: #2E7D53;
+  --color-primary-foreground: #F7FBF8;
+
+  /* Neutrals & surfaces */
+  --color-background: #F7F6F1;
+  --color-surface: #FFFFFF;
+  --color-sage: #DDE8D8;
+
+  /* Text */
+  --color-ink: #1D2A22;
+  --color-muted: #6B7280;
+
+  /* Borders */
+  --color-line: #E7E3D8;
+
+  /* Accents (used sparingly) */
+  --color-accent-amber: #C08A2E;
+  --color-accent-lime: #7C9A4A;
+  --color-accent-sky: #2E6E8E;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --shadow-card: 0 1px 2px rgba(18, 61, 42, 0.04), 0 8px 24px -12px rgba(18, 61, 42, 0.14);
+  --shadow-card-hover: 0 4px 10px rgba(18, 61, 42, 0.06), 0 16px 32px -12px rgba(18, 61, 42, 0.18);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    background-color: var(--color-background);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-sage);
+    color: var(--color-primary-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  /* Card surface — replaces glass-card everywhere */
+  .surface-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  .surface-card-hover {
+    transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
+  }
+
+  .surface-card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(31, 90, 63, 0.28);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-label {
+    @apply inline-flex items-center gap-2 text-xs font-semibold tracking-[0.16em] uppercase;
+    color: var(--color-primary);
+  }
+
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--color-line), transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes draw-line {
+  from { stroke-dashoffset: var(--dash, 300); }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes float-chip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-draw-line {
+  animation: draw-line 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-float-chip {
+  animation: float-chip 5s ease-in-out infinite;
+}

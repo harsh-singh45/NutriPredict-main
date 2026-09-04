@@ -1,0 +1,25 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+alembic==1.14.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+PyJWT==2.10.1
+bcrypt==4.2.1
+python-dotenv==1.0.1
+email-validator==2.2.0
+
+# --- prediction model (diet recommendation + metabolic model) ---
+# scikit-learn is pinned to match the version the .pkl files in
+# app/ml_assets/ were pickled with — unpickling with a different version
+# can silently produce wrong results or raise, so don't bump this without
+# re-verifying (or re-pickling) the model artifacts.
+pandas==2.2.3
+numpy==2.2.1
+scikit-learn==1.6.1
+joblib==1.4.2
+
+# --- dev / test ---
+pytest==8.3.4
+httpx==0.28.1
