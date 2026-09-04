@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Leaf, Mail, Lock, ArrowRight, Sparkles, Quote, AlertCircle, Eye, EyeOff } from 'lucide-react';
-import { login, getUser } from '../utils/auth';
-import ImageWithFallback from '../components/ui/ImageWithFallback';
+import { AlertCircle, ArrowRight, Eye, EyeOff, Leaf, Lock, Mail, Quote, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import nutritionBowlPhoto from '../assets/images/nutrition-bowl.jpg';
+import ImageWithFallback from '../components/ui/ImageWithFallback';
+import { getUser, login } from '../utils/auth';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -12,11 +12,12 @@ export default function Login() {
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // If already logged in, redirect away from login page
   useEffect(() => {
     if (getUser()) {
-      navigate('/profile');
+      navigate(location.state?.from?.pathname || '/profile', { replace: true });
     }
   }, [navigate]);
 

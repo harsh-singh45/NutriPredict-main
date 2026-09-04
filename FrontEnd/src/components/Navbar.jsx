@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Leaf, User, Menu, X } from 'lucide-react';
+import { Leaf, Menu, User, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { getUser } from '../utils/auth';
 
 const LINKS = [
@@ -54,7 +54,7 @@ export default function Navbar() {
           {LINKS.map((item) => (
             <NavLink
               key={item.label}
-              to={item.path}
+              to={item.label === 'Predict' && !user ? '/login' : item.path}
               className={({ isActive }) =>
                 `text-sm font-medium transition-colors duration-200 ${
                   isActive ? 'text-[#1F5A3F]' : 'text-[#6B7280] hover:text-[#1D2A22]'
@@ -103,7 +103,7 @@ export default function Navbar() {
           {LINKS.map((item) => (
             <NavLink
               key={item.label}
-              to={item.path}
+              to={item.label === 'Predict' && !user ? '/login' : item.path}
               onClick={closeMobileMenu}
               className={({ isActive }) =>
                 `px-3 py-2.5 rounded-lg text-sm font-medium ${

@@ -1,15 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
-import Home from './pages/Home';
-import ProfileSetup from './pages/ProfileSetup';
 import Dashboard from './pages/Dashboard';
+import ForgotPassword from './pages/ForgotPassword';
+import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
+import ProfileSetup from './pages/ProfileSetup';
+import ResetPassword from './pages/ResetPassword';
 import Signup from './pages/Signup';
 import VerifyEmail from './pages/VerifyEmail';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import Profile from './pages/Profile';
+import { getUser } from './utils/auth';
+
+function ProtectedPredictionRoute() {
+  const location = useLocation();
+
+  return getUser() ? <ProfileSetup /> : <Navigate to="/login" replace state={{ from: location }} />;
+}
 
 function App() {
   return (
@@ -20,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           
           {/* The Data Collection Form Wizard */}
-          <Route path="/predict" element={<ProfileSetup />} />
+          <Route path="/predict" element={<ProtectedPredictionRoute />} />
           
           {/* The Results Dashboard (We will rename this to Results later if needed) */}
           <Route path="/results" element={<Dashboard />} />

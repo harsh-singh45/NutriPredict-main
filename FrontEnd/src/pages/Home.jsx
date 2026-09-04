@@ -34,6 +34,7 @@ import { MiniBars, MiniRing, MiniSparkline } from '../components/ui/MiniChart';
 import Reveal from '../components/ui/Reveal';
 import SectionHeading from '../components/ui/SectionHeading';
 import TrustBadge from '../components/ui/TrustBadge';
+import { getUser } from '../utils/auth';
 
 export default function Home() {
   return (
@@ -87,9 +88,9 @@ function HeroSection() {
           </p>
 
           <div className="mt-9 flex flex-col sm:flex-row gap-4">
-            <Button to="/predict" variant="primary" size="lg" icon={ArrowRight}>
+            <PredictionButton variant="primary" size="lg" icon={ArrowRight}>
               Start Your Prediction
-            </Button>
+            </PredictionButton>
             <Button href="#how-it-works" variant="secondary" size="lg" icon={PlayCircle} iconPosition="left">
               See How It Works
             </Button>
@@ -297,9 +298,9 @@ function DietComparisonSection() {
             your specific profile — side by side, before you commit to one.
           </p>
           <div className="mt-8">
-            <Button to="/predict" variant="primary" size="lg" icon={ArrowRight}>
+            <PredictionButton variant="primary" size="lg" icon={ArrowRight}>
               Compare Your Diets
-            </Button>
+            </PredictionButton>
           </div>
         </Reveal>
 
@@ -369,20 +370,23 @@ function FinalCtaSection() {
             outcomes before committing to a diet.
           </p>
           <div className="mt-9 flex justify-center">
-            <Button
-              to="/predict"
+            <PredictionButton
               variant="light"
               size="lg"
               icon={ArrowRight}
               className="!bg-white !text-[#123D2A] !border-transparent hover:!bg-[#F7F6F1]"
             >
               Start Your Prediction
-            </Button>
+            </PredictionButton>
           </div>
         </PageContainer>
       </Reveal>
     </section>
   );
+}
+
+function PredictionButton(props) {
+  return <Button to={getUser() ? '/predict' : '/login'} {...props} />;
 }
 
 /* ---------------------------------------------------------------------- */
